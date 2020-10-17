@@ -17,7 +17,8 @@ public class GFG {
     } 
     static Node root; 
     static Node temp = root; 
-      
+
+
     /* Inorder traversal of a binary tree*/
     static void inorder(Node temp) 
     { 
@@ -34,7 +35,33 @@ public class GFG {
     { 
 
         // Do level order traversal until we find 
-        // an empty place and add the node.  
+        // an empty place and add the node.
+
+        if (temp == null) {
+            root = new Node(key);
+            return;
+        }
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(temp);
+
+        while (!q.isEmpty()) {
+            temp = q.peek();
+            q.remove();
+
+            if (temp.left == null) {
+                temp.left = new Node(key);
+                break;
+            }
+            else
+                q.add(temp.left);
+
+            if (temp.right == null) {
+                temp.right = new Node(key);
+                break;
+            }
+            else
+                q.add(temp.right);
+        }
     } 
        
     // Driver code 
